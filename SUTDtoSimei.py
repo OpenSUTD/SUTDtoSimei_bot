@@ -6,12 +6,12 @@ import requests
 import json
 import math
 import telegram
-import botdata
+import botinfo
 import os
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 #initialization of variables stored in seperate file for security reasons
-TOKEN = botdata.token
+TOKEN = botinfo.token
 
 #initialization of stuff for the bot to run
 PORT = int(os.environ.get('PORT', '5000'))
