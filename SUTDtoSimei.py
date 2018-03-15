@@ -16,7 +16,7 @@ TOKEN = botinfo.TOKEN
 #initialization of stuff for the bot to run
 PORT = int(os.environ.get('PORT', '5000'))
 bot = telegram.Bot(token = TOKEN)
-bot.setWebhook(webhook_url = "https://sutdtosimei-bot.herokuapp.com/" + TOKEN)
+bot.setWebhook(url = "https://sutdtosimei-bot.herokuapp.com/" + TOKEN)
 updater = Updater(token = TOKEN)
 dispatcher = updater.dispatcher
 
@@ -51,6 +51,7 @@ def get_bus20_time():
 
 #Function executed when user calls start command, gives the user some info about what the bot does
 def start(bot,update):
+	print("in start")
 	bot.sendMessage(chat_id = update.message.chat_id,
 					message = "Hello %s! I will help you check the arrival times of bus 20 and bus 5 going towards Simei from SUTD.\n"
 							  "To get the bus timings, just type /gosimei."%update.message.from_user.first_name)
