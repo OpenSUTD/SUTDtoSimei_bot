@@ -11,8 +11,9 @@ import os
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 #initialization of variables stored in seperate file for security reasons
-TOKEN = botinfo.token
+TOKEN = "593199969:AAE1yXmmXbl43aIsrRuByT8Q0gPVK6UVkRw"
 print(TOKEN)
+
 #initialization of stuff for the bot to run
 PORT = int(os.environ.get('PORT', '5000'))
 dispatcher = updater.dispatcher
