@@ -51,9 +51,8 @@ def get_bus20_time():
 
 #Function executed when user calls start command, gives the user some info about what the bot does
 def start(bot,update):
-	print("in start")
 	bot.sendMessage(chat_id = update.message.chat_id,
-					message = "Hello %s! I will help you check the arrival times of bus 20 and bus 5 going towards Simei from SUTD.\n"
+					text = "Hello %s! I will help you check the arrival times of bus 20 and bus 5 going towards Simei from SUTD.\n"
 							  "To get the bus timings, just type /gosimei."%update.message.from_user.first_name)
 
 dispatcher.add_handler(CommandHandler('start', start))
@@ -84,7 +83,7 @@ def goSimei(bot,update):
 	bus20_time = get_bus20_time();
 	advice = getAdvice(bus5_time, bus20_time)
 	bot.sendMessage(chat_id = update.message.chat_id, 
-					message = "Bus 5 is arriving in %d minutes.\n"
+					text = "Bus 5 is arriving in %d minutes.\n"
 							  "Bus 20 is arriving in %d minutes.\n"
 							  "%s"%(bus5_time,bus20_time,advice))
 
