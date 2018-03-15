@@ -79,13 +79,16 @@ def getAdvice(bus5_time, bus20_time):
 
 #Function that checks both the bus 5 and 20 timings and sends them to the user
 def goSimei(bot,update):
+	sent = bot.sendMessage(chat_id = update.message.chat_id, 
+					text = "Hold on, checking the timings now")
 	bus5_time = get_bus5_time();
 	bus20_time = get_bus20_time();
 	advice = getAdvice(bus5_time, bus20_time)
-	print(bot.sendMessage(chat_id = update.message.chat_id, 
-					text = "Bus 5 is arriving in %d minutes.\n"
+	bot.editMessageText(chat_id = update.message.chat_id,
+						message_id = sent['message_id']
+						text = "Bus 5 is arriving in %d minutes.\n"
 							  "Bus 20 is arriving in %d minutes.\n"
-							  "%s"%(bus5_time,bus20_time,advice)))
+							  "%s"%(bus5_time,bus20_time,advice))
 
 dispatcher.add_handler(CommandHandler('gosimei', goSimei))
 
