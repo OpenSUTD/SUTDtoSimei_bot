@@ -11,15 +11,14 @@ import os
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 #initialization of variables stored in seperate file for security reasons
-TOKEN = "593199969:AAE1yXmmXbl43aIsrRuByT8Q0gPVK6UVkRw"
-print(TOKEN)
+TOKEN = botinfo.TOKEN
 
 #initialization of stuff for the bot to run
 PORT = int(os.environ.get('PORT', '5000'))
-dispatcher = updater.dispatcher
 bot = telegram.Bot(token = TOKEN)
 bot.setWebhook(webhook_url = "https://sutdtosimei-bot.herokuapp.com/" + TOKEN)
 updater = Updater(token = TOKEN)
+dispatcher = updater.dispatcher
 
 #This function queries an API to get the arrival time of the next bus 5 at the SUTD bus stop
 #Returns the arrival time in minutes
