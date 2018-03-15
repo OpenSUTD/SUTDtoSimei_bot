@@ -86,4 +86,10 @@ def goSimei(bot,update):
 
 dispatcher.add_handler(CommandHandler('gosimei', goSimei))
 
+updater.start_webhook(listen="0.0.0.0",
+                      port=PORT,
+                      url_path=TOKEN)
+updater.bot.setWebhook("https://sutdtosimei-bot.herokuapp.com/" + TOKEN)
+updater.idle()
+
 
