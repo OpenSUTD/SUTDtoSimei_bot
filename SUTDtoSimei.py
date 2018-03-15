@@ -82,10 +82,10 @@ def goSimei(bot,update):
 	bus5_time = get_bus5_time();
 	bus20_time = get_bus20_time();
 	advice = getAdvice(bus5_time, bus20_time)
-	bot.sendMessage(chat_id = update.message.chat_id, 
+	print(bot.sendMessage(chat_id = update.message.chat_id, 
 					text = "Bus 5 is arriving in %d minutes.\n"
 							  "Bus 20 is arriving in %d minutes.\n"
-							  "%s"%(bus5_time,bus20_time,advice))
+							  "%s"%(bus5_time,bus20_time,advice)))
 
 dispatcher.add_handler(CommandHandler('gosimei', goSimei))
 
