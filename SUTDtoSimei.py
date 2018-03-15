@@ -12,7 +12,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
 #initialization of variables stored in seperate file for security reasons
 TOKEN = botinfo.token
-
+print(TOKEN)
 #initialization of stuff for the bot to run
 PORT = int(os.environ.get('PORT', '5000'))
 dispatcher = updater.dispatcher
