@@ -34,6 +34,9 @@ def get_bus5_time():
 	next_bus5_time_ms = service5['next']['duration_ms']
 	next_bus5_time_min = math.floor(next_bus5_time_ms/60/1000)
 
+	if next_bus5_time_min < 0:
+		return 0
+
 	return next_bus5_time_min
 
 #This function queries an API to get the arrival time of the next bus 20 at the SUTD bus stop
@@ -46,6 +49,9 @@ def get_bus20_time():
 
 	next_bus20_time_ms = service20['next']['duration_ms']
 	next_bus20_time_min = math.floor(next_bus20_time_ms/60/1000)
+
+	if next_bus20_time_min < 0:
+		return 0
 
 	return next_bus20_time_min
 
