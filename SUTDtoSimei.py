@@ -32,12 +32,16 @@ def get_bus5_time():
 			service5 = service
 
 	next_bus5_time_ms = service5['next']['duration_ms']
+	subsq_bus5_time_ms = service5['subsequent']['duration_ms']
 	next_bus5_time_min = math.floor(next_bus5_time_ms/60/1000)
+	subsq_bus5_time_min = math.floor(subsq_bus5_time_ms/60/1000)
 
 	if next_bus5_time_min < 0:
-		return 0
+		next_bus5_time_min = 0
+	if subsq_bus5_time_min < 0:
+		subsq_bus5_time_min = 0
 
-	return next_bus5_time_min
+	return (next_bus5_time_min, subsq_bus5_time_min)
 
 #This function queries an API to get the arrival time of the next bus 20 at the SUTD bus stop
 #Returns the arrival time in minutes
@@ -48,12 +52,16 @@ def get_bus20_time():
 	service20 = data['services'][0]
 
 	next_bus20_time_ms = service20['next']['duration_ms']
+	subsq_bus20_time_ms = service20['subsequent']['duration_ms']
 	next_bus20_time_min = math.floor(next_bus20_time_ms/60/1000)
+	subsq_bus20_time_min = math.floor(subsq_bus20_time_ms/60/1000)
 
 	if next_bus20_time_min < 0:
-		return 0
+		next_bus20_time_min = 0
+	if subsq_bus20_time_min < 0:
+		subsq_bus20_time_min = 0
 
-	return next_bus20_time_min
+	return (next_bus20_time_min, subsq_bus20_time_min)
 
 #Function executed when user calls start command, gives the user some info about what the bot does
 def start(bot,update):
@@ -87,14 +95,16 @@ def getAdvice(bus5_time, bus20_time):
 def goSimei(bot,update):
 	sent = bot.sendMessage(chat_id = update.message.chat_id, 
 					text = "Hold on, checking the timings now")
-	bus5_time = get_bus5_time();
-	bus20_time = get_bus20_time();
+	bus5_time, subsq_bus5_time = get_bus5_time();
+	bus20_time, subsq_bus20_time = get_bus20_time();
 	advice = getAdvice(bus5_time, bus20_time)
 	bot.editMessageText(chat_id = update.message.chat_id,
 						message_id = sent['message_id'],
 						text = "Bus 5 is arriving in %d minutes.\n"
 							  "Bus 20 is arriving in %d minutes.\n"
-							  "%s"%(bus5_time,bus20_time,advice))
+							  "%s\n\n"
+							  "The subsequent bus 5 is arriving in %d minutes.\n"
+							  "The subsequent bus 20 is arriving in %d minutes."%(bus5_time,bus20_time,advice,subsq_bus5_time, subsq_bus20_time))
 
 dispatcher.add_handler(CommandHandler('gosimei', goSimei))
 
